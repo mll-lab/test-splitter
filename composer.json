@@ -1,6 +1,6 @@
 {
   "name": "dave-liddament/test-splitter",
-  "description": "Splits up PHPUnit tests so they can be ran in parallel (e.g. on github actions)",
+  "description": "Splits up PHPUnit tests so they can be ran in parallel (e.g. on GitHub actions)",
   "type": "project",
   "require-dev": {
     "phpunit/phpunit": "^9.5",
