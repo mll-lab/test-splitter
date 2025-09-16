@@ -49,7 +49,7 @@ class CliArgumentParserTest extends TestCase
                     '2',
                 ],
             ],
-            'denoninator is float' => [
+            'denominator is float' => [
                 [
                     self::SCRIPT_NAME,
                     '1',
