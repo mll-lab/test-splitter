@@ -13,14 +13,35 @@ class TestNameExtractor
     {
         $testNames = [];
         foreach (explode(\PHP_EOL, $input) as $line) {
-            $listPosition = strpos($line, ' - ');
-            if (false === $listPosition) {
+            $lastSlashPosition = strrpos($line, '\\');
+            if (false === $lastSlashPosition) {
                 continue;
             }
 
-            $testNames[] = substr($line, 0, $listPosition);
+            $testCase = substr($line, $lastSlashPosition + 1);
+
+            $firstColonPosition = strrpos($testCase, '::');
+            if (false === $firstColonPosition) {
+                continue;
+            }
+
+            $testName = substr($testCase, 0, $firstColonPosition);
+
+            if (!in_array($testName, $testNames)) {
+                $testNames[] = $testName;
+            }
         }
 
         return $testNames;
+    }
+
+    /**
+     * @return array<int,string>
+     */
+    public function getTestFunctionNames(string $input): array
+    {
+        preg_match_all('/^ - (.+)$/m', $input, $matches);
+
+        return $matches[1];
     }
 }

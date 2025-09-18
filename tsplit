@@ -39,7 +39,8 @@ $stdIn = stream_get_contents(STDIN);
 
 $testNameExtractor = new TestNameExtractor();
 
-$testClassSplitter = new TestClassSplitter($testNameExtractor->getDeDupedTestClassNames($stdIn));
+// TODO add CLI option to choose between class names and function names
+$testClassSplitter = new TestClassSplitter($testNameExtractor->getTestFunctionNames($stdIn));
 
 $testCaseNames = $testClassSplitter->getTestCaseNames($cliArgumentParser->getNumerator(), $cliArgumentParser->getDenominator());
 $escapedTestCaseNames = array_map(function (string $testCaseName): string {
